@@ -1,0 +1,13 @@
+%br
+= table_for @dates, table_html: { :class => "table table-hover table-bordered" }, sortable: true do |table|
+  = table.column :title
+  = table.column :date
+  = table.column data: lambda { time_ago_in_words table.current_row.date }, header: 'Time Ago', sortable: false
+
+= form_for @date, url: {action: "create"}, html: {class: "form well"} do |f|
+  .form-group
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.date_field :date, class: 'form-control'
+  .form-group
+    = f.submit "Create", class: 'btn btn-primary'
