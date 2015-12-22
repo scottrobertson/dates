@@ -9,7 +9,7 @@ class DatesController < ApplicationController
   end
 
   def create
-    DateToRemember.create! params.require(:date_to_remember).permit(:date, :title)
+    DateToRemember.create! params.require(:date_to_remember).permit(:date, :title, :end_date)
     redirect_to :back
   end
 end
