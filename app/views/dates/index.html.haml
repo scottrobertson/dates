@@ -2,7 +2,7 @@
 = table_for @dates, table_html: { class: 'table table-hover table-bordered' }, sortable: true do |table|
   = table.column :title
   = table.column :date
-  = table.column data: -> { component_date table.current_row.date }, header: 'Time Ago', sortable: false
+  = table.column data: -> { component_date table.current_row.date }, header: 'Duration', sortable: false
 
 = form_for @date, url: { action: 'create' }, html: { class: 'form well' } do |f|
   .form-group

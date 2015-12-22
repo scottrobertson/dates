@@ -19,9 +19,6 @@ module DatesHelper
       output << pluralize(component[:days], 'day')
     end
 
-    output = output.join(', ')
-
-    "#{output} ago"
+    output.join(', ')
   end
-
 end
