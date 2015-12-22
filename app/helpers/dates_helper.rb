@@ -2,7 +2,8 @@ module DatesHelper
 
   def component_date(date, end_date: nil)
     start_date = date.date
-    end_date = end_date || date.end_date.presence || Date.today
+    end_date = end_date || date.end_date.presence
+    return nil if end_date.nil?
 
     component = TimeDifference.between(start_date, end_date).in_general
     output = []
