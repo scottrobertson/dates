@@ -1,2 +1,6 @@
 %br
-= render 'form'
+= simple_form_for @date, html: { class: 'well' }, url: date_path(@date) do |f|
+  = f.input :title
+  = f.input :date, as: :date, html5: true
+  = f.input :end_date, as: :date, html5: true
+  = f.button :submit

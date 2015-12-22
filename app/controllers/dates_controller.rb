@@ -9,8 +9,8 @@ class DatesController < ApplicationController
   end
 
   def create
-    DateToRemember.create params.require(:date_to_remember).permit(:date, :title, :end_date)
-    redirect_to :back
+    @date = DateToRemember.create params.require(:date_to_remember).permit(:date, :title, :end_date)
+    redirect_to dates_path
   end
 
   def edit
@@ -20,6 +20,6 @@ class DatesController < ApplicationController
   def update
     @date = DateToRemember.find params[:id]
     @date.update params.require(:date_to_remember).permit(:date, :title, :end_date)
-    redirect_to :back
+    redirect_to dates_path
   end
 end

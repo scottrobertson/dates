@@ -5,4 +5,8 @@
   = table.column :end_date, data: -> { table.current_row.end_date ? table.current_row.end_date.to_s(:rfc822) : '-' }, header: 'End Date'
   = table.column data: -> { component_date table.current_row }, header: 'Duration', sortable: false
 
-= render 'form'
+= simple_form_for @date, html: { class: 'well' }, url: dates_path do |f|
+  = f.input :title
+  = f.input :date, as: :date, html5: true
+  = f.input :end_date, as: :date, html5: true
+  = f.button :submit
