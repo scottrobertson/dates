@@ -1,7 +1,10 @@
 module DatesHelper
 
   def component_date(date)
-    component = TimeDifference.between(date, Date.today).in_general
+    start_date = date.date
+    end_date = date.end_date.presence || Date.today
+
+    component = TimeDifference.between(start_date, end_date).in_general
     output = []
     if component[:years] > 0
       output << pluralize(component[:years], 'year')
