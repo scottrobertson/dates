@@ -1,6 +1,5 @@
 class DatesController < ApplicationController
   def index
-
     params[:order] = params[:order].presence || 'date'
     params[:sort_mode] = params[:sort_mode].presence || 'asc'
 
@@ -9,7 +8,7 @@ class DatesController < ApplicationController
   end
 
   def create
-    @date = DateToRemember.create params.require(:date_to_remember).permit(:date, :title, :end_date)
+    @date = DateToRemember.create(date_params)
     redirect_to dates_path
   end
 
@@ -19,7 +18,13 @@ class DatesController < ApplicationController
 
   def update
     @date = DateToRemember.find params[:id]
-    @date.update params.require(:date_to_remember).permit(:date, :title, :end_date)
+    @date.update(date_params)
     redirect_to dates_path
+  end
+
+  private
+
+  def date_params
+    params.require(:date_to_remember).permit(:date, :title, :end_date, :category)
   end
 end
