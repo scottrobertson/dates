@@ -1,4 +1,7 @@
-%h1.lead Dates to Remember
+.page-header
+  .pull-right
+    .daterange.daterange--double.two
+  %h1.lead Dates to Remember
 
 - if @travel_count > 0
   %p.alert.alert-info You have spent <b>#{pluralize(@travel_days, 'day')}</b> traveling to <b>#{pluralize(@travel_count, 'place')}</b> since <b>#{@travel_start.to_s(:rfc822)}</b>.
@@ -20,3 +23,21 @@
   = f.input :date, as: :date, html5: true
   = f.input :end_date, as: :date, html5: true
   = f.button :submit, value: 'Submit'
+
+
+:javascript
+  $(document).ready(function() {
+    new Calendar({
+      element: $('.daterange'),
+      earliest_date: "#{@earliest_date}",
+      latest_date: moment("#{@latest_date}"),
+      start_date: moment("#{@start_date}"),
+      end_date: moment("#{@end_date}"),
+      presets: true,
+      callback: function() {
+        var start_date = this.start_date.format('YYYY-MM-DD')
+        var end_date = this.end_date.format('YYYY-MM-DD')
+        window.location.href = window.location.pathname+"?"+$.param({'start_date': start_date,'end_date': end_date })
+      }
+    });
+  })
