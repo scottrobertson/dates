@@ -5,6 +5,13 @@ class DatesController < ApplicationController
 
     @dates = DateToRemember.order(params[:order] => params[:sort_mode])
     @date = DateToRemember.new
+
+    @travel_dates = @dates.where(category: 'Travel').to_a
+    @travel_count = @dates.pluck(:title).uniq.size
+    @travel_start = @dates.pluck(:date).min
+    @travel_days = @travel_dates.sum do |date|
+      (date.end_date - date.date).to_i if date.end_date.present?
+    end
   end
 
   def create

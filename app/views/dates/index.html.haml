@@ -1,4 +1,7 @@
-%br
+%h1.lead Dates to Remember
+
+- if @travel_count > 0
+  %p.alert.alert-info You have spent <b>#{pluralize(@travel_days, 'day')}</b> traveling to <b>#{pluralize(@travel_count, 'place')}</b> since <b>#{@travel_start.to_s(:rfc822)}</b>.
 
 - if @dates.any?
   = table_for @dates, table_html: { class: 'table table-hover table-bordered' } do |table|
