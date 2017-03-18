@@ -1,4 +1,8 @@
-%br
+.page-header
+  %h2
+    = link_to 'Dates to Remember', root_path
+    > #{@date.title.presence || @date.id}
+
 = simple_form_for @date, html: { class: 'well' }, url: date_path(@date) do |f|
   = f.input :title
   = f.input :category, collection: ['Other', 'Birthday', 'Travel', 'Anniversary', 'Home', 'Work'].sort, include_blank: false

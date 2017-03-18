@@ -22,8 +22,12 @@ class DatesController < ApplicationController
   end
 
   def create
-    @date = DateToRemember.create(date_params)
-    redirect_to dates_path
+    @date = DateToRemember.new(date_params)
+    if @date.save
+      redirect_to dates_path
+    else
+      render :new
+    end
   end
 
   def new
@@ -36,8 +40,11 @@ class DatesController < ApplicationController
 
   def update
     @date = DateToRemember.find params[:id]
-    @date.update(date_params)
-    redirect_to dates_path
+    if @date.update(date_params)
+      redirect_to dates_path
+    else
+      render :edit
+    end
   end
 
   private
