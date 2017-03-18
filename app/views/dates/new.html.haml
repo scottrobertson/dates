@@ -1,0 +1,11 @@
+.page-header
+  %h2
+    = link_to 'Dates to Remember', root_path
+    > Add Date
+
+= simple_form_for @date, html: { class: 'well' }, url: dates_path do |f|
+  = f.input :title
+  = f.input :category, collection: ['Other', 'Birthday', 'Travel', 'Anniversary', 'Home', 'Work'].sort, include_blank: false
+  = f.input :date, as: :date, html5: true
+  = f.input :end_date, as: :date, html5: true
+  = f.button :submit, value: 'Submit'

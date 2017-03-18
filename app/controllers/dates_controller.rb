@@ -26,6 +26,10 @@ class DatesController < ApplicationController
     redirect_to dates_path
   end
 
+  def new
+    @date = DateToRemember.new
+  end
+
   def edit
     @date = DateToRemember.find params[:id]
   end
