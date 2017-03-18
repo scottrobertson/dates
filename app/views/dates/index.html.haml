@@ -1,5 +1,5 @@
 %br
-= table_for @dates, table_html: { class: 'table table-hover table-bordered' }, sortable: true do |table|
+= table_for @dates, table_html: { class: 'table table-hover table-bordered' } do |table|
   = table.column :title, link_url: lambda { |d| edit_date_path d  }
   = table.column :category, data: -> { table.current_row.category.to_s.titleize  }
   = table.column :date, data: -> { table.current_row.date.to_s(:rfc822) }, header: 'Start Date'
