@@ -1,6 +1,7 @@
 %br
 = simple_form_for @date, html: { class: 'well' }, url: date_path(@date) do |f|
   = f.input :title
+  = f.input :category, collection: ['Other', 'Birthday', 'Travel', 'Anniversary', 'Home', 'Work'].sort, include_blank: false
   = f.input :date, as: :date, html5: true
   = f.input :end_date, as: :date, html5: true
-  = f.button :submit
+  = f.button :submit, value: 'Submit'
