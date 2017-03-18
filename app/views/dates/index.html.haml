@@ -1,6 +1,8 @@
 .page-header
-  .pull-right
-    .daterange.daterange--double.two
+
+  - if @dates.any?
+    .pull-right
+      .daterange.daterange--double.two
   %h2
     Dates to Remember
     = link_to '+ Add Date', new_date_path, class: 'btn btn-xs btn-primary'
@@ -20,17 +22,19 @@
 
 :javascript
   $(document).ready(function() {
-    new Calendar({
-      element: $('.daterange'),
-      earliest_date: "#{@earliest_date}",
-      latest_date: moment("#{@latest_date}"),
-      start_date: moment("#{@start_date}"),
-      end_date: moment("#{@end_date}"),
-      presets: true,
-      callback: function() {
-        var start_date = this.start_date.format('YYYY-MM-DD')
-        var end_date = this.end_date.format('YYYY-MM-DD')
-        window.location.href = window.location.pathname+"?"+$.param({'start_date': start_date,'end_date': end_date })
-      }
-    });
+    if ($('.daterange .dr-input').length == 0) {
+      new Calendar({
+        element: $('.daterange'),
+        earliest_date: "#{@earliest_date}",
+        latest_date: moment("#{@latest_date}"),
+        start_date: moment("#{@start_date}"),
+        end_date: moment("#{@end_date}"),
+        presets: true,
+        callback: function() {
+          var start_date = this.start_date.format('YYYY-MM-DD')
+          var end_date = this.end_date.format('YYYY-MM-DD')
+          window.location.href = window.location.pathname+"?"+$.param({'start_date': start_date,'end_date': end_date })
+        }
+      });
+    }
   })

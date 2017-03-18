@@ -7,9 +7,10 @@ class DatesController < ApplicationController
     @dates = DateToRemember.order(params[:order] => params[:sort_mode])
 
     # Calendar Stuff
-    @earliest_date = [@dates.pluck(:date).min, Date.today].min
-    @latest_date = [@dates.pluck(:date).max, Date.today].min
+    @earliest_date = [(@dates.any? ? @dates.pluck(:date).min : nil), Date.today].compact.min
+    @latest_date = [(@dates.any? ? @dates.pluck(:date).max : nil), Date.today].compact.min
 
+    # Date filtering
     @dates = @dates.where('date >= ? AND date <= ?', params[:start_date], params[:end_date]) if params[:start_date].present?
     @start_date = [@dates.pluck(:date).min, (params[:start_date] ? Date.parse(params[:start_date]) : nil)].compact.min
     @end_date = [@dates.pluck(:date).max, (params[:end_date] ? Date.parse(params[:end_date]) : nil)].compact.max
@@ -35,16 +36,21 @@ class DatesController < ApplicationController
   end
 
   def edit
-    @date = DateToRemember.find params[:id]
+    @date = DateToRemember.find(params[:id])
   end
 
   def update
-    @date = DateToRemember.find params[:id]
+    @date = DateToRemember.find(params[:id])
     if @date.update(date_params)
       redirect_to dates_path
     else
       render :edit
     end
+  end
+
+  def destroy
+    DateToRemember.find(params[:id]).destroy
+    redirect_to dates_path
   end
 
   private
