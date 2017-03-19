@@ -12,11 +12,11 @@
 
 - if @dates.select{|d| d.date > Date.today }.any?
   %h2.lead Upcoming Events
-  = render 'table', dates: @dates.select{|d| d.date > Date.today }
+  = render 'table', dates: @dates.select{|d| d.date > Date.today }, future: true
 
 - if @dates.select{|d| d.date <= Date.today }.any?
   %h2.lead Past Events
-  = render 'table', dates: @dates.select{|d| d.date <= Date.today }
+  = render 'table', dates: @dates.select{|d| d.date <= Date.today }, future: false
 - else
   %p.alert.alert-info You have not created any dates yet
 
