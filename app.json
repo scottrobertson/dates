@@ -1,0 +1,16 @@
+{
+  "name": "Dates",
+  "description": "A tiny app to help you remember dates",
+  "repository": "https://github.com/scottrobertson/dates",
+  "keywords": ["ruby", "dates"],
+  "env": {
+    "USERNAME": {
+      "description": "Your username",
+      "value": "admin"
+    },
+    "PASSWORD": {
+      "description": "Your password",
+      "value": "password"
+    }
+  }
+}
