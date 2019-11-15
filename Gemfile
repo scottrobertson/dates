@@ -27,6 +27,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'listen'
   gem 'web-console'
   gem 'spring'
 end
