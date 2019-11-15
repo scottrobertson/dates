@@ -5,7 +5,7 @@ RUN apk update
 RUN apk add yarn git build-base postgresql-dev
 
 ADD Gemfile* /app/
-RUN bundle install --jobs 4 --retry 1
+RUN bundle install --jobs 4 --retry 1 --without development test
 
 ADD . /app
 
