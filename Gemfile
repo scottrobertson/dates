@@ -20,6 +20,8 @@ gem "haml"
 gem 'time_difference'
 gem 'simple_form'
 
+gem 'tzinfo-data'
+
 group :development, :test do
   gem 'byebug'
 end
