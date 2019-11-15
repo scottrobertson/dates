@@ -1,0 +1,26 @@
+kind: pipeline
+name: default
+type: kubernetes
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      username: admin
+      password:
+        from_secret: docker_password
+      registry: registry.scottrobertson.me
+      repo: registry.scottrobertson.me/dates
+      tags:
+        - "${DRONE_BRANCH}"
+        - "${DRONE_COMMIT}"
+      cache_from:
+        - "registry.scottrobertson.me/dates:${DRONE_BRANCH}"
+
+  - name: deploy
+    image: quay.io/honestbee/drone-kubernetes
+    settings:
+      deployment: dates
+      repo: registry.scottrobertson.me/dates
+      container: dates
+      tag: ${DRONE_COMMIT}
