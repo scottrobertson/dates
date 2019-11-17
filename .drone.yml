@@ -4,6 +4,7 @@ type: kubernetes
 
 steps:
   - name: docker
+    storage_driver: overlay
     image: plugins/docker
     settings:
       username: admin
