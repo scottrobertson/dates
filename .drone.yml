@@ -2,6 +2,10 @@ kind: pipeline
 name: default
 type: kubernetes
 
+trigger:
+  branch:
+    - master
+    
 steps:
   - name: docker
     storage_driver: overlay
