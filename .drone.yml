@@ -5,27 +5,28 @@ type: kubernetes
 trigger:
   branch:
     - master
-    
+
 steps:
   - name: docker
     storage_driver: overlay
     image: plugins/docker
     settings:
-      username: admin
+      username:
+        from_secret: docker_password
       password:
         from_secret: docker_password
-      registry: registry.scottrobertson.me
-      repo: registry.scottrobertson.me/dates
+      registry: registry.digitalocean.com
+      repo: registry.digitalocean.com/scott/dates
       tags:
         - "${DRONE_BRANCH}"
         - "${DRONE_COMMIT}"
       cache_from:
-        - "registry.scottrobertson.me/dates:${DRONE_BRANCH}"
+        - "registry.digitalocean.com/scott/dates:${DRONE_BRANCH}"
 
   - name: deploy
     image: quay.io/honestbee/drone-kubernetes
     settings:
       deployment: dates
-      repo: registry.scottrobertson.me/dates
+      repo: registry.digitalocean.com/scott/dates
       container: dates
       tag: ${DRONE_COMMIT}
