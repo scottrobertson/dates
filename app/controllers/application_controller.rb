@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   http_basic_authenticate_with name: (ENV['USERNAME'] || 'admin'), password: (ENV['PASSWORD'] || 'password'), except: [:ping]
 
   def ping
-    render text: 'ok', layout: false
+    render plain: 'ok', layout: false
   end
 
 end
