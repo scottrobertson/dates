@@ -1,0 +1,43 @@
+<div class="page-header">
+  <% if @dates.any? %>
+    <div class="pull-right">
+      <div class="daterange daterange--double two"></div>
+    </div>
+  <% end %>
+  <h2>
+    Dates to Remember
+    <%= link_to '+ Add', new_date_path, class: 'btn btn-xs btn-primary' %>
+  </h2>
+</div>
+<% if @travel_count > 0 %>
+  <p class="alert alert-info">You have spent <b>#{pluralize(@travel_days, 'day')}</b> traveling to <b>#{pluralize(@travel_count, 'place')}</b> since <b>#{@travel_start.to_s(:rfc822)}</b>.</p>
+<% end %>
+<% if @dates.select{|d| d.date > Date.today }.any? %>
+  <h2 class="lead">Upcoming Events</h2>
+  <%= render 'table', dates: @dates.select{|d| d.date > Date.today }, future: true %>
+<% end %>
+<% if @dates.select{|d| d.date <= Date.today }.any? %>
+  <h2 class="lead">Past Events</h2>
+  <%= render 'table', dates: @dates.select{|d| d.date <= Date.today }, future: false %>
+<% else %>
+  <p class="alert alert-info">You have not created any dates yet</p>
+<% end %>
+<script>
+  $(document).ready(function() {
+    if ($('.daterange .dr-input').length == 0) {
+      new Calendar({
+        element: $('.daterange'),
+        earliest_date: "#{@earliest_date}",
+        latest_date: moment("#{@latest_date}"),
+        start_date: moment("#{@start_date}"),
+        end_date: moment("#{@end_date}"),
+        presets: true,
+        callback: function() {
+          var start_date = this.start_date.format('YYYY-MM-DD')
+          var end_date = this.end_date.format('YYYY-MM-DD')
+          window.location.href = window.location.pathname+"?"+$.param({'start_date': start_date,'end_date': end_date })
+        }
+      });
+    }
+  })
+</script>

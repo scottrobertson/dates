@@ -16,7 +16,6 @@ gem 'puma'
 
 gem 'bootstrap-sass'
 gem "table-for"
-gem "haml"
 gem 'time_difference'
 gem 'simple_form'
 
