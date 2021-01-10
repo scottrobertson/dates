@@ -21,13 +21,3 @@ gem 'time_difference'
 gem 'simple_form'
 
 gem 'tzinfo-data'
-
-group :development, :test do
-  gem 'byebug'
-end
-
-group :development do
-  gem 'listen'
-  gem 'web-console'
-  gem 'spring'
-end

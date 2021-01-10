@@ -62,7 +62,6 @@ GEM
       zeitwerk (~> 2.3)
     autoprefixer-rails (10.2.0.0)
       execjs
-    bindex (0.8.1)
     blocks (2.8.0)
       call_with_params (~> 0.0.2)
       hashie
@@ -71,7 +70,6 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
     builder (3.2.4)
-    byebug (11.1.3)
     call_with_params (0.0.2)
       activesupport (>= 3.0.0)
     coffee-rails (5.0.0)
@@ -98,9 +96,6 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    listen (3.4.0)
-      rb-fsevent (~> 0.10, >= 0.10.3)
-      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -153,9 +148,6 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rake (13.0.3)
-    rb-fsevent (0.10.4)
-    rb-inotify (0.10.1)
-      ffi (~> 1.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -169,7 +161,6 @@ GEM
     simple_form (5.0.3)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -194,11 +185,6 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    web-console (4.1.0)
-      actionview (>= 6.0.0)
-      activemodel (>= 6.0.0)
-      bindex (>= 0.4.0)
-      railties (>= 6.0.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -212,24 +198,20 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
-  byebug
   coffee-rails
   haml
   jquery-rails
-  listen
   momentjs-rails
   pg
   puma
   rails (= 6.1.1)
   sass-rails
   simple_form
-  spring
   table-for
   time_difference
   turbolinks
   tzinfo-data
   uglifier
-  web-console
 
 RUBY VERSION
    ruby 2.7.2p137
