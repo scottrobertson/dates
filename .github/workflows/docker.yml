@@ -36,7 +36,7 @@ jobs:
 
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         env:
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
         with:
